@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Aperture SYNC</string>
+    <string name="in_app_label">Aperture Medical : SYNC</string>
+    <string name="dummy_button">SYNC</string>
+    <string name="dummy_content">BODY CONTENT</string>
+    <string name="start_date">START DATE/TIME</string>
+    <string name="end_date">END DATE/TIME</string>
+    <string name="confirm">CONFIRM</string>
+    <string name="cancel">CANCEL</string>
+    <string name="title_activity_heart_rate">HeartRateActivity</string>
+    <string name="title_activity_blood_pressure">BloodPressureActivity</string>
+    <string name="title_activity_hydration">HydrationActivity</string>
+    <string name="title_activity_temperature">TemperatureActivity</string>
+    <string name="title_activity_overview">OverviewActivity</string>
+    <string name="date_slider_title">Selected date</string>
+    <string name="set">Set</string>
+
+
+
+
+</resources>

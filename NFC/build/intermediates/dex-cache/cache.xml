@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pre-dex-items>
+
+    <item
+        dex="C:\Users\Kirill\AndroidStudioProjects\NFC\app\build\intermediates\pre-dexed\debug\internal_impl-20.0.0-fc247dbf8e31424b5ba82be8cad5e25d1cb5240f.jar"
+        jar="C:\Users\Kirill\AndroidStudioProjects\NFC\app\build\intermediates\exploded-aar\com.android.support\support-v4\20.0.0\libs\internal_impl-20.0.0.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="e40b3078e3fbd353c9f44da8df25a8fc0078209d"/>
+    <item
+        dex="C:\Users\Kirill\AndroidStudioProjects\NFC\app\build\intermediates\pre-dexed\debug\support-annotations-20.0.0-b95d55ce22c21985da487b6c45c561b041814b5c.jar"
+        jar="D:\Android-sdk\extras\android\m2repository\com\android\support\support-annotations\20.0.0\support-annotations-20.0.0.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="9d9013e9ff35fc3756411e62873c363c70c638fa"/>
+    <item
+        dex="C:\Users\Kirill\AndroidStudioProjects\NFC\app\build\intermediates\pre-dexed\debug\classes-4e0f9f97c9e77a12ccd69b7d2609571dba3443fd.jar"
+        jar="C:\Users\Kirill\AndroidStudioProjects\NFC\app\build\intermediates\exploded-aar\com.android.support\support-v4\20.0.0\classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="8694693636ab36910c8100ce527c258ff3ebece0"/>
+
+</pre-dex-items>

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#1997a9"
-    tools:context="com.westhealth.aperture.nfc.HydrationActivity">
+    tools:context="com.westhealth.aperture.nfc.HeartRateActivity">
 
     <!-- The primary full-screen view. This can be replaced with whatever view
          is needed to present your content, e.g. VideoView, SurfaceView,

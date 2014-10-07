@@ -22,9 +22,7 @@ public class HeartRateActivity extends FragmentActivity implements DateTimePicke
 
     private View decorView;
 
-    private TextView mText;
-
-    private long start_time, end_time, rTime;
+    private long start_time, end_time;
 
     private boolean startCalled = false;
 
@@ -34,15 +32,12 @@ public class HeartRateActivity extends FragmentActivity implements DateTimePicke
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mText = (TextView)findViewById(R.id.fullscreen_content);
-
         heartRateActivity = this;
 
         mDialogStart  = new DateTimePicker();
         mDialogEnd  = new DateTimePicker();
 
         mNfcAdapter=NfcAdapter.getDefaultAdapter(this);
-
         mNfcAdapter.enableReaderMode (this, new NfcAdapter.ReaderCallback() {
             @Override
             public void onTagDiscovered(Tag tag) {
@@ -58,7 +53,6 @@ public class HeartRateActivity extends FragmentActivity implements DateTimePicke
         }
 
         setContentView(R.layout.activity_heart_rate);
-
         decorView = getWindow().getDecorView();
 
         findViewById(R.id.startDateButton).setOnClickListener(new View.OnClickListener() {
@@ -82,7 +76,8 @@ public class HeartRateActivity extends FragmentActivity implements DateTimePicke
     @Override
     protected void onResume() {
         super.onResume();
-
+        mDialogStart  = new DateTimePicker();
+        mDialogEnd  = new DateTimePicker();
     }
 
     @Override

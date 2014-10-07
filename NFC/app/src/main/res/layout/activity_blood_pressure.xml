@@ -6,8 +6,8 @@
     tools:context="com.westhealth.aperture.nfc.BloodPressureActivity">
 
     <!-- The primary full-screen view. This can be replaced with whatever view
-         is needed to present your content, e.g. VideoView, SurfaceView,
-         TextureView, etc. -->
+          is needed to present your content, e.g. VideoView, SurfaceView,
+          TextureView, etc. -->
     <TextView android:id="@+id/fullscreen_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,13 +16,12 @@
         android:textStyle="bold"
         android:textSize="50sp"
         android:gravity="center"
-        android:text="BLOOD PRESSURE GRAPH" />
+        android:text="HEART RATE GRAPH" />
 
     <!-- This FrameLayout insets its children based on system windows using
          android:fitsSystemWindows. -->
     <FrameLayout android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
         android:fitsSystemWindows="true">
 
         <LinearLayout android:id="@+id/fullscreen_content_controls"
@@ -34,14 +33,25 @@
             android:orientation="horizontal"
             tools:ignore="UselessParent">
 
-            <Button android:id="@+id/dummy_button"
+            <Button android:id="@+id/startDateButton"
                 style="?metaButtonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/dummy_button" />
+                android:text="@string/start_date"
+                android:singleLine="false" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/end_date"
+                android:id="@+id/endDateButton"
+                android:layout_weight="1"
+                style="?metaButtonBarButtonStyle" />
 
         </LinearLayout>
+
+
     </FrameLayout>
 
 </FrameLayout>

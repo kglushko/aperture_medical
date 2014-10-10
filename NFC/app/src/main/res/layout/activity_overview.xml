@@ -127,6 +127,7 @@
 
     <!-- This FrameLayout insets its children based on system windows using
          android:fitsSystemWindows. -->
+
     <FrameLayout android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true">
@@ -155,6 +156,25 @@
                 android:id="@+id/clear"
                 android:layout_gravity="bottom|right" />
 
+        </LinearLayout>
+
+        <LinearLayout
+            style="?metaButtonBarStyle"
+            tools:ignore="UselessParent"
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|center_horizontal"
+            android:background="@color/black_overlay"
+            android:orientation="horizontal" >
+
+            <TextView
+                style="?metaButtonBarButtonStyle"
+                android:id="@+id/button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/in_app_label" />
         </LinearLayout>
 
     </FrameLayout>

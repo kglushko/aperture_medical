@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">Aperture SYNC</string>
-    <string name="in_app_label">Aperture Medical : SYNC</string>
+    <string name="in_app_label">APERTURE MEDICAL - G.L.A.D.O.S. SYNC</string>
     <string name="dummy_button">SYNC</string>
     <string name="dummy_content">BODY CONTENT</string>
     <string name="start_date">START DATE/TIME</string>
@@ -20,8 +20,5 @@
     <string name="line">Line</string>
     <string name="bar">Bar</string>
     <string name="pie">Pie</string>
-
-
-
 
 </resources>

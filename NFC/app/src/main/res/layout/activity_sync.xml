@@ -42,6 +42,20 @@
 
             </LinearLayout>
 
+            <FrameLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                style="?metaButtonBarButtonStyle"
+                android:background="@color/black_overlay">
+
+                <TextView
+                    style="?metaButtonBarButtonStyle"
+                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/in_app_label" />
+            </FrameLayout>
+
         </FrameLayout>
 
-    </FrameLayout>
+</FrameLayout>

@@ -133,8 +133,8 @@ public class SyncActivity extends Activity {
         });
 
         // Declare the in and out animations and initialize them
-        Animation in = AnimationUtils.loadAnimation(this, android.R.anim.fade_in);
-        Animation out = AnimationUtils.loadAnimation(this, android.R.anim.fade_out);
+        Animation in = AnimationUtils.loadAnimation(this, android.R.anim.slide_in_left);
+        Animation out = AnimationUtils.loadAnimation(this, android.R.anim.slide_out_right);
 
         // set the animation type of textSwitcher
         mTextView.setInAnimation(in);
@@ -190,8 +190,12 @@ public class SyncActivity extends Activity {
                 });
             } else {
                 isNFCon = true;
-                mMainButton.setVisibility(View.GONE);
-                // Wait to discover a tag
+                mMainButton.setText("CONTINUE W/O SYNC");
+                mMainButton.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        startActivity(new Intent(SyncActivity.this, OverviewActivity.class));
+                    }
+                });
                 discoverTag();
             }
         }
@@ -219,7 +223,7 @@ public class SyncActivity extends Activity {
             /* This will need modifications */
             if(NRT.saveData(msgs,getApplicationContext(),true) ==  1) {
                 startActivity(new Intent(this, OverviewActivity.class));
-                overridePendingTransition(R.xml.fade_in, R.xml.fade_out);
+                //overridePendingTransition(R.xml.fade_in, R.xml.fade_out);
             }
             finish();
         }

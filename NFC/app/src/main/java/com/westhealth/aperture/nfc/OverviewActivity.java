@@ -61,7 +61,7 @@ public class OverviewActivity extends Activity {
             }
         }, NfcAdapter.FLAG_READER_NO_PLATFORM_SOUNDS, new Bundle());
 
-        endOthers();
+        endStat();
 
         setContentView(R.layout.activity_overview);
 
@@ -216,51 +216,30 @@ public class OverviewActivity extends Activity {
     }
 
     private void manageIntents(int stat) {
+                Intent intent = new Intent(this, StatActivity.class);
         switch(stat) {
             case 0:
-                startActivity(new Intent(this, TemperatureActivity.class));
-                overridePendingTransition(R.xml.fade_in, R.xml.fade_out);
+                intent.putExtra("Type","Temp");
                 break;
             case 1:
-                startActivity(new Intent(this, HeartRateActivity.class));
-                overridePendingTransition(R.xml.fade_in, R.xml.fade_out);
+                intent.putExtra("Type","HR");
                 break;
             case 2:
-                startActivity(new Intent(this, BloodPressureActivity.class));
-                overridePendingTransition(R.xml.fade_in, R.xml.fade_out);
+                intent.putExtra("Type","BP");
                 break;
             case 3:
-                startActivity(new Intent(this, HydrationActivity.class));
-                overridePendingTransition(R.xml.fade_in, R.xml.fade_out);
+                intent.putExtra("Type","Hydro");
                 break;
             case 4:
                 startActivity(new Intent(this, SyncActivity.class));
-                overridePendingTransition(R.xml.fade_in, R.xml.fade_out);
-                break;
+                return;
         }
+        startActivity(intent);
     }
 
-    private void endOthers() {
+    private void endStat() {
         try {
-            TemperatureActivity.temperatureActivity.finish();
-        }
-        catch (Exception e) {
-            Log.d("AM_SYNC", "Attempted to close non-existent activity:: " + e.getMessage());
-        }
-        try {
-            HeartRateActivity.heartRateActivity.finish();
-        }
-        catch (Exception e) {
-            Log.d("AM_SYNC", "Attempted to close non-existent activity:: " + e.getMessage());
-        }
-        try {
-            BloodPressureActivity.bloodPressureActivity.finish();
-        }
-        catch (Exception e) {
-            Log.d("AM_SYNC", "Attempted to close non-existent activity:: " + e.getMessage());
-        }
-        try {
-            HydrationActivity.hydrationActivity.finish();
+            StatActivity.statActivity.finish();
         }
         catch (Exception e) {
             Log.d("AM_SYNC", "Attempted to close non-existent activity:: " + e.getMessage());

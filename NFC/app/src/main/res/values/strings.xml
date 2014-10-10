@@ -9,13 +9,17 @@
     <string name="end_date">END DATE/TIME</string>
     <string name="confirm">CONFIRM</string>
     <string name="cancel">CANCEL</string>
-    <string name="title_activity_heart_rate">HeartRateActivity</string>
+    <string name="title_activity_stat">StatActivity</string>
     <string name="title_activity_blood_pressure">BloodPressureActivity</string>
     <string name="title_activity_hydration">HydrationActivity</string>
     <string name="title_activity_temperature">TemperatureActivity</string>
     <string name="title_activity_overview">OverviewActivity</string>
     <string name="date_slider_title">Selected date</string>
     <string name="set">Set</string>
+
+    <string name="line">Line</string>
+    <string name="bar">Bar</string>
+    <string name="pie">Pie</string>
 
 
 

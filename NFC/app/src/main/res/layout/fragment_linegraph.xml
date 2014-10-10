@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/baseCeleste"
+    android:orientation="vertical">
+
+
+
+	<com.westhealth.aperture.graph.GraphView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/linegraph"
+        android:background="@color/baseCeleste"
+        android:layout_margin="@dimen/default_margin"
+        app:lineBackground="@color/baseCeleste"
+        app:lineUseDip="true"/>
+	
+</LinearLayout>

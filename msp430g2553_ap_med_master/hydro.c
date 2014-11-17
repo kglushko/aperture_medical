@@ -25,7 +25,7 @@ uint16_t measHYDR(void) {
     rise_count = 0;
     time_up = 0;
 
-    while(rise_count < 8) {           					// trap
+    while(rise_count < 8) {
 
     	TACTL = TASSEL_2 + ID_0 + MC_0;     	// Use SMCLK (16 MHz Calibrated), no division,
     	                                        // stopped mode
@@ -36,7 +36,7 @@ uint16_t measHYDR(void) {
 
         overflows = 0;      					// reset overflow counter
 
-        _BIS_SR(GIE);				// Sleep, my dearest
+        _BIS_SR(GIE);							// Sleep, my dearest
 
         TACTL |= MC_2;      					// start timer, sets TA0.0 at overflow.
 

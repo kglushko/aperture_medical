@@ -25,6 +25,7 @@ void NFC_ALIGN_SEND (uint16_t bpm, uint16_t temp,
 	 * 		TIME	 | DAY     | 0x00			  | 0xFF
 	 *
 	 */
+
 	uint16_t l_addr = addr;
 
 	aligned[0][0] = (uint8_t)(l_addr >> 8);

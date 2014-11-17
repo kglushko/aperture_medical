@@ -46,7 +46,7 @@ uint16_t measTEMP(uint16_t delay, uint16_t BIT, uint16_t INCH, uint16_t PWR_PIN)
 	  temp += (uint16_t)ADC10MEM;
 	}
 
-	_delay_cycles(30);
+	_delay_cycles(5);
 
 	P2OUT &= ~PWR_PIN;	P2DIR &= ~PWR_PIN;
 
@@ -95,9 +95,6 @@ heart_data measHRTR(uint32_t delay, uint16_t BIT_F, uint16_t BIT_K, uint16_t INC
 
 	ADC10SA = (uint16_t)ADC_RESULT;
 
-	uint32_t debug = 0;
-
-
 	while(--delay != 0)				// ADC DELAY Controls Conversion time
 	{
 		if(timefg == 1) {
@@ -111,8 +108,6 @@ heart_data measHRTR(uint32_t delay, uint16_t BIT_F, uint16_t BIT_K, uint16_t INC
 		ADC10SA = (int)ADC_RESULT;
 
 		ADC10CTL0 |= ENC + ADC10SC;
-
-		debug++;
 
 		if (ADC_RESULT[1] > 0x0250 && ADC_RESULT[1] < 0xFFFF) { // Highest impulse means sensor intialized
 			if(beatfg == 0) {

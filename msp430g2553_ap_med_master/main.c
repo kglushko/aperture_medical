@@ -65,9 +65,13 @@ int main(void)
 			g_timestamp = g_timestamp + 1;
 
 			if(g_timestamp == 92) {
-				g_addr = 0x0000;
 				g_daystamp = g_daystamp + 1;
 				g_timestamp = 0;
+			}
+
+			if(g_addr == 0x7F0) {
+				g_addr = 0x0000;
+				g_daystamp = 0;
 			}
 
 			g_delay = 150000;

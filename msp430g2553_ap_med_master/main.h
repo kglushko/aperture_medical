@@ -15,6 +15,7 @@
 
 #include "sensors.h"
 #include "hydro.h"
+#include "power_test.h"
 #include "m24lr_xx_i2c.h"
 
 #define HEART_ON_TIME		0xFFFF
@@ -43,8 +44,12 @@
 
 #define TEMP_SENSE		BIT3	// 1.3
 
+#define PWR_SENSE		BIT4    // 1.4
+
 #define HR_ADC_INCH		INCH_2
 
 #define TEMP_ADC_INCH	INCH_3
+
+#define PWR_ADC_INCH	INCH_4
 
 #endif /* MAIN_H_ */

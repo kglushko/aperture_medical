@@ -11,6 +11,7 @@ $(GEN_CMDS__FLAG) \
 "./hydro.obj" \
 "./m24lr_xx_i2c.obj" \
 "./main.obj" \
+"./power_test.obj" \
 "./sensors.obj" \
 "../lnk_msp430g2553.cmd" \
 -l"libc.a" \
@@ -143,8 +144,8 @@ msp430g2553_ap_med_master.hex: $(EXE_OUTPUTS)
 # Other Targets
 clean:
 	-$(RM) $(EXE_OUTPUTS__QUOTED)$(BIN_OUTPUTS__QUOTED)
-	-$(RM) "hydro.pp" "m24lr_xx_i2c.pp" "main.pp" "sensors.pp" 
-	-$(RM) "hydro.obj" "m24lr_xx_i2c.obj" "main.obj" "sensors.obj" 
+	-$(RM) "hydro.pp" "m24lr_xx_i2c.pp" "main.pp" "power_test.pp" "sensors.pp" 
+	-$(RM) "hydro.obj" "m24lr_xx_i2c.obj" "main.obj" "power_test.obj" "sensors.obj" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

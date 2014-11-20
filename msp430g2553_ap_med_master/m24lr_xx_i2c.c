@@ -7,14 +7,15 @@
 
 #include "m24lr_xx_i2c.h"
 
-volatile uint8_t aligned[3][6];
+volatile uint8_t aligned[4][6];
 volatile uint8_t TXByteCtr;
 volatile uint8_t * PTxData;
 
 
 void NFC_ALIGN_SEND (uint16_t bpm, uint16_t temp,
 					 uint16_t transit, uint16_t hydro,
-					 uint8_t time, uint8_t day, uint16_t addr,
+					 uint8_t time, uint8_t day,
+					 uint8_t pwr, uint16_t addr,
 					 uint8_t PWR_PIN, uint8_t PULL_PIN)
 {
 	/*
@@ -22,7 +23,7 @@ void NFC_ALIGN_SEND (uint16_t bpm, uint16_t temp,
 	 *
 	 * 		BPM_H    | BPM_L   | TRANSIT TIME_H   | TRANSIT TIME_L
 	 * 		TEMP_H   | TEMP_L  | HYDRO_H 		  | HYDRO_L
-	 * 		TIME	 | DAY     | 0x00			  | 0xFF
+	 * 		TIME	 | DAY     | PWR			  | 0xFF
 	 *
 	 */
 
@@ -50,8 +51,17 @@ void NFC_ALIGN_SEND (uint16_t bpm, uint16_t temp,
 	aligned[2][1] = (uint8_t)(l_addr);
 	aligned[2][2] = time;
 	aligned[2][3] = day;
-	aligned[2][4] = 0x00;
+	aligned[2][4] = pwr;
 	aligned[2][5] = 0xFF;
+
+	l_addr += 0x0004;
+
+	aligned[3][0] = (uint8_t)(l_addr >> 8);
+	aligned[3][1] = (uint8_t)(l_addr);
+	aligned[3][2] = 0xDE;
+	aligned[3][3] = 0xAD;
+	aligned[3][4] = 0xBE;
+	aligned[3][5] = 0xEF;
 
 	P2DIR |= (PULL_PIN); P2OUT |= (PULL_PIN);
 	P2DIR |= (PWR_PIN); P2OUT |= (PWR_PIN);
@@ -59,6 +69,8 @@ void NFC_ALIGN_SEND (uint16_t bpm, uint16_t temp,
 	I2C_TO_M24LRXX(aligned[0], PWR_PIN);
 	_delay_cycles(16000);
 	I2C_TO_M24LRXX(aligned[1], PWR_PIN);
+	_delay_cycles(16000);
+	I2C_TO_M24LRXX(aligned[2], PWR_PIN);
 	_delay_cycles(16000);
 	I2C_TO_M24LRXX(aligned[2], PWR_PIN);
 	_delay_cycles(16000);

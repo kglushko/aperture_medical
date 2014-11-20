@@ -1,10 +1,10 @@
 ******************************************************************************
                   MSP430 Linker PC v4.3.5                      
 ******************************************************************************
->> Linked Mon Nov 17 02:04:01 2014
+>> Linked Thu Nov 20 13:10:50 2014
 
 OUTPUT FILE NAME:   <msp430g2553_ap_med_master.out>
-ENTRY POINT SYMBOL: "_c_int00"  address: 0000c8d6
+ENTRY POINT SYMBOL: "_c_int00"  address: 0000c818
 
 
 MEMORY CONFIGURATION
@@ -14,12 +14,12 @@ MEMORY CONFIGURATION
   SFR                   00000000   00000010  00000000  00000010  RWIX
   PERIPHERALS_8BIT      00000010   000000f0  00000000  000000f0  RWIX
   PERIPHERALS_16BIT     00000100   00000100  00000000  00000100  RWIX
-  RAM                   00000200   00000200  0000007d  00000183  RWIX
+  RAM                   00000200   00000200  00000064  0000019c  RWIX
   INFOD                 00001000   00000040  00000000  00000040  RWIX
   INFOC                 00001040   00000040  00000000  00000040  RWIX
   INFOB                 00001080   00000040  00000000  00000040  RWIX
   INFOA                 000010c0   00000040  00000000  00000040  RWIX
-  FLASH                 0000c000   00003fe0  00000976  0000366a  RWIX
+  FLASH                 0000c000   00003fe0  000008b8  00003728  RWIX
   INT00                 0000ffe0   00000002  00000000  00000002  RWIX
   INT01                 0000ffe2   00000002  00000000  00000002  RWIX
   INT02                 0000ffe4   00000002  00000002  00000000  RWIX
@@ -46,65 +46,53 @@ section   page    origin      length       input sections
 .init_array 
 *          0    0000c000    00000000     UNINITIALIZED
 
-.bss       0    00000200    00000021     UNINITIALIZED
-                  00000200    00000012     (.common:aligned)
-                  00000212    00000004     (.common:ADC_RESULT)
-                  00000216    00000004     (.common:g_heart_data)
-                  0000021a    00000002     (.common:PTxData)
-                  0000021c    00000002     (.common:time_up)
-                  0000021e    00000001     (.common:TXByteCtr)
-                  0000021f    00000001     (.common:overflows)
-                  00000220    00000001     (.common:rise_count)
-
-.TI.noinit 
-*          0    00000200    00000000     UNINITIALIZED
-
-.data      0    00000222    0000000c     UNINITIALIZED
-                  00000222    0000000c     main.obj (.data)
+.data      0    00000200    0000000c     UNINITIALIZED
+                  00000200    0000000c     main.obj (.data)
 
 .TI.persistent 
-*          0    00000222    00000000     UNINITIALIZED
+*          0    00000200    00000000     UNINITIALIZED
+
+.bss       0    0000020c    00000008     UNINITIALIZED
+                  0000020c    00000002     (.common:PTxData)
+                  0000020e    00000002     (.common:time_up)
+                  00000210    00000001     (.common:TXByteCtr)
+                  00000211    00000001     (.common:g_power)
+                  00000212    00000001     (.common:overflows)
+                  00000213    00000001     (.common:rise_count)
+
+.TI.noinit 
+*          0    0000020c    00000000     UNINITIALIZED
 
 .stack     0    000003b0    00000050     UNINITIALIZED
                   000003b0    00000002     rts430_eabi.lib : boot.obj (.stack)
                   000003b2    0000004e     --HOLE--
 
-.text      0    0000c000    0000095a     
-                  0000c000    00000210     sensors.obj (.text:measHRTR)
-                  0000c210    00000116     main.obj (.text:main)
-                  0000c326    00000106     m24lr_xx_i2c.obj (.text:NFC_ALIGN_SEND)
-                  0000c42c    0000009c     hydro.obj (.text:measHYDR)
-                  0000c4c8    0000009a     rts430_eabi.lib : fs_div.obj (.text)
-                  0000c562    00000086     sensors.obj (.text:measTEMP)
-                  0000c5e8    00000064     m24lr_xx_i2c.obj (.text:i2c_TX)
-                  0000c64c    0000005e     rts430_eabi.lib : copy_decompress_rle.obj (.text:__TI_decompress_rle_core)
-                  0000c6aa    0000005e                     : autoinit.obj (.text:_auto_init)
-                  0000c708    0000004c     m24lr_xx_i2c.obj (.text:I2C_INIT)
-                  0000c754    0000004c     rts430_eabi.lib : lsr16.obj (.text)
-                  0000c7a0    00000046                     : fs_tou.obj (.text)
-                  0000c7e6    0000003e     sensors.obj (.text:ADCChannelSelect_GEN)
-                  0000c824    00000038     m24lr_xx_i2c.obj (.text:I2C_TO_M24LRXX)
-                  0000c85c    00000032     rts430_eabi.lib : fs_ultof.obj (.text)
-                  0000c88e    00000024     hydro.obj (.text:TA1_ISR)
-                  0000c8b2    00000024     rts430_eabi.lib : fs_utof.obj (.text)
-                  0000c8d6    0000001a                     : boot.obj (.text:_c_int00_noexit)
-                  0000c8f0    00000014                     : copy_zero_init.obj (.text:decompress:ZI:__TI_zero_init)
-                  0000c904    00000012                     : copy_decompress_none.obj (.text:decompress:none:__TI_decompress_none)
-                  0000c916    00000012                     : memcpy.obj (.text:memcpy)
-                  0000c928    00000010                     : epilog.obj (.text)
-                  0000c938    00000008     main.obj (.text:watchdog_timer)
-                  0000c940    00000006     hydro.obj (.text:TA0_ISR)
-                  0000c946    00000006     rts430_eabi.lib : isr_trap.obj (.text:_isr:__TI_ISR_TRAP)
-                  0000c94c    00000006                     : copy_decompress_rle.obj (.text:decompress:rle24:__TI_decompress_rle24)
-                  0000c952    00000004                     : pre_init.obj (.text:_system_pre_init)
-                  0000c956    00000004                     : exit.obj (.text:abort)
+.text      0    0000c000    0000089c     
+                  0000c000    00000618     power_test.obj (.text:test_power)
+                  0000c618    0000007e     main.obj (.text:main)
+                  0000c696    00000064     m24lr_xx_i2c.obj (.text:i2c_TX)
+                  0000c6fa    0000005e     rts430_eabi.lib : copy_decompress_rle.obj (.text:__TI_decompress_rle_core)
+                  0000c758    0000005e                     : autoinit.obj (.text:_auto_init)
+                  0000c7b6    0000003e     sensors.obj (.text:ADCChannelSelect_GEN)
+                  0000c7f4    00000024     hydro.obj (.text:TA1_ISR)
+                  0000c818    0000001a     rts430_eabi.lib : boot.obj (.text:_c_int00_noexit)
+                  0000c832    00000014                     : copy_zero_init.obj (.text:decompress:ZI:__TI_zero_init)
+                  0000c846    00000012                     : copy_decompress_none.obj (.text:decompress:none:__TI_decompress_none)
+                  0000c858    00000012                     : memcpy.obj (.text:memcpy)
+                  0000c86a    00000010                     : epilog.obj (.text)
+                  0000c87a    00000008     main.obj (.text:watchdog_timer)
+                  0000c882    00000006     hydro.obj (.text:TA0_ISR)
+                  0000c888    00000006     rts430_eabi.lib : isr_trap.obj (.text:_isr:__TI_ISR_TRAP)
+                  0000c88e    00000006                     : copy_decompress_rle.obj (.text:decompress:rle24:__TI_decompress_rle24)
+                  0000c894    00000004                     : pre_init.obj (.text:_system_pre_init)
+                  0000c898    00000004                     : exit.obj (.text:abort)
 
-.cinit     0    0000c95a    0000001c     
-                  0000c95a    00000009     (.cinit..data.load) [load image, compression = rle]
-                  0000c963    00000001     --HOLE-- [fill = 0]
-                  0000c964    00000006     (__TI_handler_table)
-                  0000c96a    00000004     (.cinit..bss.load) [load image, compression = zero_init]
-                  0000c96e    00000008     (__TI_cinit_table)
+.cinit     0    0000c89c    0000001c     
+                  0000c89c    00000009     (.cinit..data.load) [load image, compression = rle]
+                  0000c8a5    00000001     --HOLE-- [fill = 0]
+                  0000c8a6    00000006     (__TI_handler_table)
+                  0000c8ac    00000004     (.cinit..bss.load) [load image, compression = zero_init]
+                  0000c8b0    00000008     (__TI_cinit_table)
 
 PORT1      0    0000ffe4    00000002     
                   0000ffe4    00000002     rts430_eabi.lib : int02.obj (.int02)
@@ -155,14 +143,14 @@ NMI        0    0000fffc    00000002
 
 LINKER GENERATED COPY TABLES
 
-__TI_cinit_table @ 0000c96e records: 2, size/record: 4, table size: 8
-	.data: load addr=0000c95a, load size=00000009 bytes, run addr=00000222, run size=0000000c bytes, compression=rle
-	.bss: load addr=0000c96a, load size=00000004 bytes, run addr=00000200, run size=00000021 bytes, compression=zero_init
+__TI_cinit_table @ 0000c8b0 records: 2, size/record: 4, table size: 8
+	.data: load addr=0000c89c, load size=00000009 bytes, run addr=00000200, run size=0000000c bytes, compression=rle
+	.bss: load addr=0000c8ac, load size=00000004 bytes, run addr=0000020c, run size=00000008 bytes, compression=zero_init
 
 
 LINKER GENERATED HANDLER TABLE
 
-__TI_handler_table @ 0000c964 records: 3, size/record: 2, table size: 6
+__TI_handler_table @ 0000c8a6 records: 3, size/record: 2, table size: 6
 	index: 0, handler: __TI_zero_init
 	index: 1, handler: __TI_decompress_rle24
 	index: 2, handler: __TI_decompress_none
@@ -179,12 +167,11 @@ address    name
 00000049   ADC10DTC1
 000001b4   ADC10MEM
 000001bc   ADC10SA
-0000c7e6   ADCChannelSelect_GEN
-00000212   ADC_RESULT
+0000c7b6   ADCChannelSelect_GEN
 00000057   BCSCTL1
 00000058   BCSCTL2
 00000053   BCSCTL3
-0000c956   C$$EXIT
+0000c898   C$$EXIT
 00000059   CACTL1
 0000005a   CACTL2
 000010fb   CALBC1_12MHZ
@@ -200,13 +187,10 @@ address    name
 00000128   FCTL1
 0000012a   FCTL2
 0000012c   FCTL3
-0000c708   I2C_INIT
-0000c824   I2C_TO_M24LRXX
 00000000   IE1
 00000001   IE2
 00000002   IFG1
 00000003   IFG2
-0000c326   NFC_ALIGN_SEND
 00000022   P1DIR
 00000025   P1IE
 00000024   P1IES
@@ -231,7 +215,7 @@ address    name
 00000010   P3REN
 0000001b   P3SEL
 00000043   P3SEL2
-0000021a   PTxData
+0000020c   PTxData
 00000172   TA0CCR0
 00000174   TA0CCR1
 00000176   TA0CCR2
@@ -241,7 +225,7 @@ address    name
 00000160   TA0CTL
 0000012e   TA0IV
 00000170   TA0R
-0000c940   TA0_ISR
+0000c882   TA0_ISR
 00000192   TA1CCR0
 00000194   TA1CCR1
 00000196   TA1CCR2
@@ -251,13 +235,13 @@ address    name
 00000180   TA1CTL
 0000011e   TA1IV
 00000190   TA1R
-0000c88e   TA1_ISR
+0000c7f4   TA1_ISR
 000010db   TLV_ADC10_1_LEN
 000010da   TLV_ADC10_1_TAG
 000010c0   TLV_CHECKSUM
 000010f7   TLV_DCO_30_LEN
 000010f6   TLV_DCO_30_TAG
-0000021e   TXByteCtr
+00000210   TXByteCtr
 0000005d   UCA0ABCTL
 00000062   UCA0BR0
 00000063   UCA0BR1
@@ -282,16 +266,16 @@ address    name
 00000120   WDTCTL
 00000400   __STACK_END
 00000050   __STACK_SIZE
-0000c96e   __TI_CINIT_Base
-0000c976   __TI_CINIT_Limit
-0000c964   __TI_Handler_Table_Base
-0000c96a   __TI_Handler_Table_Limit
+0000c8b0   __TI_CINIT_Base
+0000c8b8   __TI_CINIT_Limit
+0000c8a6   __TI_Handler_Table_Base
+0000c8ac   __TI_Handler_Table_Limit
 UNDEFED    __TI_INITARRAY_Base
 UNDEFED    __TI_INITARRAY_Limit
-0000c946   __TI_ISR_TRAP
+0000c888   __TI_ISR_TRAP
 00000001   __TI_args_main
-0000c904   __TI_decompress_none
-0000c94c   __TI_decompress_rle24
+0000c846   __TI_decompress_none
+0000c88e   __TI_decompress_rle24
 00000001   __TI_exit
 0000ffe4   __TI_int02
 0000ffe6   __TI_int03
@@ -305,62 +289,39 @@ UNDEFED    __TI_INITARRAY_Limit
 0000fff8   __TI_int12
 0000fffa   __TI_int13
 0000fffc   __TI_int14
-0000c8f0   __TI_zero_init
+0000c832   __TI_zero_init
 ffffffff   __binit__
 ffffffff   __c_args__
-0000c4c8   __mspabi_divf
-0000c7a0   __mspabi_fixfu
-0000c8b2   __mspabi_fltuf
-0000c85c   __mspabi_fltulf
-0000c934   __mspabi_func_epilog_1
-0000c932   __mspabi_func_epilog_2
-0000c930   __mspabi_func_epilog_3
-0000c92e   __mspabi_func_epilog_4
-0000c92c   __mspabi_func_epilog_5
-0000c92a   __mspabi_func_epilog_6
-0000c928   __mspabi_func_epilog_7
-0000c754   __mspabi_srli
-0000c79a   __mspabi_srli_1
-0000c776   __mspabi_srli_10
-0000c772   __mspabi_srli_11
-0000c76e   __mspabi_srli_12
-0000c76a   __mspabi_srli_13
-0000c766   __mspabi_srli_14
-0000c762   __mspabi_srli_15
-0000c796   __mspabi_srli_2
-0000c792   __mspabi_srli_3
-0000c78e   __mspabi_srli_4
-0000c78a   __mspabi_srli_5
-0000c786   __mspabi_srli_6
-0000c782   __mspabi_srli_7
-0000c77e   __mspabi_srli_8
-0000c77a   __mspabi_srli_9
-0000c6aa   _auto_init
-0000c8d6   _c_int00
-0000c8d6   _c_int00_noexit
+0000c876   __mspabi_func_epilog_1
+0000c874   __mspabi_func_epilog_2
+0000c872   __mspabi_func_epilog_3
+0000c870   __mspabi_func_epilog_4
+0000c86e   __mspabi_func_epilog_5
+0000c86c   __mspabi_func_epilog_6
+0000c86a   __mspabi_func_epilog_7
+0000c758   _auto_init
+0000c818   _c_int00
+0000c818   _c_int00_noexit
 0000fffe   _reset_vector
 000003b0   _stack
-0000c952   _system_pre_init
-0000c956   abort
-00000200   aligned
+0000c894   _system_pre_init
+0000c898   abort
 ffffffff   binit
-00000222   g_addr
-00000229   g_daystamp
-00000224   g_delay
-00000216   g_heart_data
-0000022c   g_hyd
-0000022a   g_temp
-00000228   g_timestamp
-0000c5e8   i2c_TX
-0000c210   main
-0000c000   measHRTR
-0000c42c   measHYDR
-0000c562   measTEMP
-0000c916   memcpy
-0000021f   overflows
-00000220   rise_count
-0000021c   time_up
-0000c938   watchdog_timer
+00000200   g_addr
+00000207   g_daystamp
+00000202   g_delay
+0000020a   g_hyd
+00000211   g_power
+00000208   g_temp
+00000206   g_timestamp
+0000c696   i2c_TX
+0000c618   main
+0000c858   memcpy
+00000212   overflows
+00000213   rise_count
+0000c000   test_power
+0000020e   time_up
+0000c87a   watchdog_timer
 
 
 GLOBAL SYMBOLS: SORTED BY Symbol Address 
@@ -455,20 +416,18 @@ address    name
 000001b2   ADC10CTL1
 000001b4   ADC10MEM
 000001bc   ADC10SA
-00000200   aligned
-00000212   ADC_RESULT
-00000216   g_heart_data
-0000021a   PTxData
-0000021c   time_up
-0000021e   TXByteCtr
-0000021f   overflows
-00000220   rise_count
-00000222   g_addr
-00000224   g_delay
-00000228   g_timestamp
-00000229   g_daystamp
-0000022a   g_temp
-0000022c   g_hyd
+00000200   g_addr
+00000202   g_delay
+00000206   g_timestamp
+00000207   g_daystamp
+00000208   g_temp
+0000020a   g_hyd
+0000020c   PTxData
+0000020e   time_up
+00000210   TXByteCtr
+00000211   g_power
+00000212   overflows
+00000213   rise_count
 000003b0   _stack
 00000400   __STACK_END
 000010c0   TLV_CHECKSUM
@@ -484,60 +443,35 @@ address    name
 000010fd   CALBC1_8MHZ
 000010fe   CALDCO_1MHZ
 000010ff   CALBC1_1MHZ
-0000c000   measHRTR
-0000c210   main
-0000c326   NFC_ALIGN_SEND
-0000c42c   measHYDR
-0000c4c8   __mspabi_divf
-0000c562   measTEMP
-0000c5e8   i2c_TX
-0000c6aa   _auto_init
-0000c708   I2C_INIT
-0000c754   __mspabi_srli
-0000c762   __mspabi_srli_15
-0000c766   __mspabi_srli_14
-0000c76a   __mspabi_srli_13
-0000c76e   __mspabi_srli_12
-0000c772   __mspabi_srli_11
-0000c776   __mspabi_srli_10
-0000c77a   __mspabi_srli_9
-0000c77e   __mspabi_srli_8
-0000c782   __mspabi_srli_7
-0000c786   __mspabi_srli_6
-0000c78a   __mspabi_srli_5
-0000c78e   __mspabi_srli_4
-0000c792   __mspabi_srli_3
-0000c796   __mspabi_srli_2
-0000c79a   __mspabi_srli_1
-0000c7a0   __mspabi_fixfu
-0000c7e6   ADCChannelSelect_GEN
-0000c824   I2C_TO_M24LRXX
-0000c85c   __mspabi_fltulf
-0000c88e   TA1_ISR
-0000c8b2   __mspabi_fltuf
-0000c8d6   _c_int00
-0000c8d6   _c_int00_noexit
-0000c8f0   __TI_zero_init
-0000c904   __TI_decompress_none
-0000c916   memcpy
-0000c928   __mspabi_func_epilog_7
-0000c92a   __mspabi_func_epilog_6
-0000c92c   __mspabi_func_epilog_5
-0000c92e   __mspabi_func_epilog_4
-0000c930   __mspabi_func_epilog_3
-0000c932   __mspabi_func_epilog_2
-0000c934   __mspabi_func_epilog_1
-0000c938   watchdog_timer
-0000c940   TA0_ISR
-0000c946   __TI_ISR_TRAP
-0000c94c   __TI_decompress_rle24
-0000c952   _system_pre_init
-0000c956   C$$EXIT
-0000c956   abort
-0000c964   __TI_Handler_Table_Base
-0000c96a   __TI_Handler_Table_Limit
-0000c96e   __TI_CINIT_Base
-0000c976   __TI_CINIT_Limit
+0000c000   test_power
+0000c618   main
+0000c696   i2c_TX
+0000c758   _auto_init
+0000c7b6   ADCChannelSelect_GEN
+0000c7f4   TA1_ISR
+0000c818   _c_int00
+0000c818   _c_int00_noexit
+0000c832   __TI_zero_init
+0000c846   __TI_decompress_none
+0000c858   memcpy
+0000c86a   __mspabi_func_epilog_7
+0000c86c   __mspabi_func_epilog_6
+0000c86e   __mspabi_func_epilog_5
+0000c870   __mspabi_func_epilog_4
+0000c872   __mspabi_func_epilog_3
+0000c874   __mspabi_func_epilog_2
+0000c876   __mspabi_func_epilog_1
+0000c87a   watchdog_timer
+0000c882   TA0_ISR
+0000c888   __TI_ISR_TRAP
+0000c88e   __TI_decompress_rle24
+0000c894   _system_pre_init
+0000c898   C$$EXIT
+0000c898   abort
+0000c8a6   __TI_Handler_Table_Base
+0000c8ac   __TI_Handler_Table_Limit
+0000c8b0   __TI_CINIT_Base
+0000c8b8   __TI_CINIT_Limit
 0000ffe4   __TI_int02
 0000ffe6   __TI_int03
 0000ffea   __TI_int05
@@ -557,4 +491,4 @@ ffffffff   binit
 UNDEFED    __TI_INITARRAY_Base
 UNDEFED    __TI_INITARRAY_Limit
 
-[189 symbols]
+[162 symbols]

@@ -9,8 +9,9 @@ hydro.obj: D:/TexasInstruments/ccsv6/tools/compiler/msp430_4.3.5/include/intrins
 hydro.obj: D:/TexasInstruments/ccsv6/tools/compiler/msp430_4.3.5/include/stdint.h
 hydro.obj: ../sensors.h
 hydro.obj: ../hydro.h
-hydro.obj: ../m24lr_xx_i2c.h
+hydro.obj: ../power_test.h
 hydro.obj: ../main.h
+hydro.obj: ../m24lr_xx_i2c.h
 
 ../hydro.c: 
 ../main.h: 
@@ -21,5 +22,6 @@ D:/TexasInstruments/ccsv6/tools/compiler/msp430_4.3.5/include/intrinsics.h:
 D:/TexasInstruments/ccsv6/tools/compiler/msp430_4.3.5/include/stdint.h: 
 ../sensors.h: 
 ../hydro.h: 
-../m24lr_xx_i2c.h: 
+../power_test.h: 
 ../main.h: 
+../m24lr_xx_i2c.h: 

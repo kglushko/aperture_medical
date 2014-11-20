@@ -10,6 +10,8 @@ m24lr_xx_i2c.obj: D:/TexasInstruments/ccsv6/tools/compiler/msp430_4.3.5/include/
 m24lr_xx_i2c.obj: D:/TexasInstruments/ccsv6/tools/compiler/msp430_4.3.5/include/stdint.h
 m24lr_xx_i2c.obj: ../sensors.h
 m24lr_xx_i2c.obj: ../hydro.h
+m24lr_xx_i2c.obj: ../power_test.h
+m24lr_xx_i2c.obj: ../main.h
 m24lr_xx_i2c.obj: ../m24lr_xx_i2c.h
 
 ../m24lr_xx_i2c.c: 
@@ -22,4 +24,6 @@ D:/TexasInstruments/ccsv6/tools/compiler/msp430_4.3.5/include/intrinsics.h:
 D:/TexasInstruments/ccsv6/tools/compiler/msp430_4.3.5/include/stdint.h: 
 ../sensors.h: 
 ../hydro.h: 
+../power_test.h: 
+../main.h: 
 ../m24lr_xx_i2c.h: 

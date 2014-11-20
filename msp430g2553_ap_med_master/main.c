@@ -9,8 +9,7 @@ volatile uint16_t g_addr = 0;
 
 uint32_t g_delay = 0;
 
-uint8_t g_timestamp = 0;
-uint8_t g_daystamp = 0;
+uint8_t g_timestamp = 0, g_daystamp = 0, g_power;
 
 volatile heart_data g_heart_data;
 
@@ -20,7 +19,13 @@ int main(void)
 {
   WDTCTL = WDTPW + WDTHOLD;                 // Stop WDT
 
-  g_delay = 150000;
+  g_power = test_power(PWR_SENSE, PWR_ADC_INCH);
+
+  if(g_power == 0) {
+	  g_delay = 2700000;			// 15 minutes
+  }
+
+  g_delay = 150000;		// 5 seconds
 
   WDTCTL = WDT_MDLY_32;						// I just met you
 
@@ -34,11 +39,20 @@ int main(void)
 		{
 			WDTCTL = WDTPW + WDTHOLD;               // Stop WDT
 
-			IE1 &= ~WDTIE;								// Enable WatchDog Interrupt
+			IE1 &= ~WDTIE;							// Disable WatchDog Interrupt
+
+			g_power = test_power(PWR_SENSE, PWR_ADC_INCH);
+
+			if(g_power == 0) {
+				g_delay = 2700000;			// 15 minutes
+				WDTCTL = WDT_MDLY_32;						// But heres my number
+				IE1 |= WDTIE;								// Enable WatchDog Interrupt
+				__bis_SR_register(LPM1_bits + GIE);        // Enter LPM1 w/ interrupts
+			}
 
 			_delay_cycles(50);					// And this is crazy
 
-			g_heart_data = measHRTR(HEART_ON_TIME, HR_FOOT_SENSE, HR_LEG_SENSE,HR_ADC_INCH, HR_FOOT_PWR, HR_KNEE_PWR);
+			/*g_heart_data = measHRTR(HEART_ON_TIME, HR_FOOT_SENSE, HR_LEG_SENSE,HR_ADC_INCH, HR_FOOT_PWR, HR_KNEE_PWR);
 
 			_delay_cycles(50);
 
@@ -50,12 +64,14 @@ int main(void)
 
 			_delay_cycles(50);
 
+
 			NFC_ALIGN_SEND	(	g_heart_data.bpm,			// Measured Beats Per Minute
 								g_temp,						// Measured Temp
 								g_heart_data.transit,		// Measured Transit Time
 								g_hyd,						// Measure Hydration
 								g_timestamp,				// Accumulated Timestamp
 								g_daystamp,					// Accumulated Daystamp
+								g_power,					// Device Power
 								g_addr,						// Pointer to next address
 								I2C_PWR,					// Power the NFC Transponder
 								PUR_PWR						// Power pullups
@@ -66,15 +82,13 @@ int main(void)
 
 			if(g_timestamp == 92) {
 				g_daystamp = g_daystamp + 1;
+				g_addr = 0x0000;
 				g_timestamp = 0;
 			}
 
-			if(g_addr == 0x7F0) {
-				g_addr = 0x0000;
-				g_daystamp = 0;
-			}
+			*/
 
-			g_delay = 150000;
+			g_delay = 1;
 
 			WDTCTL = WDT_MDLY_32;						// But heres my number
 

@@ -9,8 +9,9 @@ sensors.obj: D:/TexasInstruments/ccsv6/tools/compiler/msp430_4.3.5/include/intri
 sensors.obj: D:/TexasInstruments/ccsv6/tools/compiler/msp430_4.3.5/include/stdint.h
 sensors.obj: ../sensors.h
 sensors.obj: ../hydro.h
-sensors.obj: ../m24lr_xx_i2c.h
+sensors.obj: ../power_test.h
 sensors.obj: ../main.h
+sensors.obj: ../m24lr_xx_i2c.h
 
 ../sensors.c: 
 ../main.h: 
@@ -21,5 +22,6 @@ D:/TexasInstruments/ccsv6/tools/compiler/msp430_4.3.5/include/intrinsics.h:
 D:/TexasInstruments/ccsv6/tools/compiler/msp430_4.3.5/include/stdint.h: 
 ../sensors.h: 
 ../hydro.h: 
-../m24lr_xx_i2c.h: 
+../power_test.h: 
 ../main.h: 
+../m24lr_xx_i2c.h: 

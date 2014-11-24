@@ -18,7 +18,7 @@
 #include "power_test.h"
 #include "m24lr_xx_i2c.h"
 
-#define HEART_ON_TIME		0xFFFF
+#define HEART_ON_TIME		15000
 #define TEMP_ON_TME			8
 
 // Port two PWR Pins
@@ -46,7 +46,7 @@
 
 #define PWR_SENSE		BIT4    // 1.4
 
-#define HR_ADC_INCH		INCH_2
+#define HR_ADC_INCH		INCH_3
 
 #define TEMP_ADC_INCH	INCH_3
 

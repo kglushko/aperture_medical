@@ -19,7 +19,7 @@ void ADCChannelSelect_GEN(uint16_t BIT, uint16_t INCH);
 
 uint16_t measTEMP(uint16_t delay, uint16_t BIT, uint16_t INCH, uint16_t PWR_PIN);
 
-heart_data measHRTR(uint32_t delay, uint16_t BIT_F, uint16_t BIT_K, uint16_t INCH,
+heart_data measHRTR(uint16_t delay, uint16_t BIT_F, uint16_t BIT_K, uint16_t INCH,
 					uint16_t FOOT_PWR_PIN, uint16_t KNEE_PWR_PIN);
 
 #endif /* SENSORS_H_ */

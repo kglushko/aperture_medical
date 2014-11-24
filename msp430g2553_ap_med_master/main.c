@@ -20,10 +20,10 @@ int main(void)
   WDTCTL = WDTPW + WDTHOLD;                 // Stop WDT
 
   g_power = test_power(PWR_SENSE, PWR_ADC_INCH);
-
+/*
   if(g_power == 0) {
 	  g_delay = 2700000;			// 15 minutes
-  }
+  }*/
 
   g_delay = 150000;		// 5 seconds
 
@@ -42,17 +42,17 @@ int main(void)
 			IE1 &= ~WDTIE;							// Disable WatchDog Interrupt
 
 			g_power = test_power(PWR_SENSE, PWR_ADC_INCH);
-
+/*
 			if(g_power == 0) {
 				g_delay = 2700000;			// 15 minutes
 				WDTCTL = WDT_MDLY_32;						// But heres my number
 				IE1 |= WDTIE;								// Enable WatchDog Interrupt
 				__bis_SR_register(LPM1_bits + GIE);        // Enter LPM1 w/ interrupts
-			}
+			}*/
 
 			_delay_cycles(50);					// And this is crazy
 
-			/*g_heart_data = measHRTR(HEART_ON_TIME, HR_FOOT_SENSE, HR_LEG_SENSE,HR_ADC_INCH, HR_FOOT_PWR, HR_KNEE_PWR);
+			g_heart_data = measHRTR(HEART_ON_TIME, HR_FOOT_SENSE, HR_LEG_SENSE,HR_ADC_INCH, HR_FOOT_PWR, HR_KNEE_PWR);
 
 			_delay_cycles(50);
 
@@ -86,9 +86,8 @@ int main(void)
 				g_timestamp = 0;
 			}
 
-			*/
 
-			g_delay = 1;
+			g_delay = 15000;
 
 			WDTCTL = WDT_MDLY_32;						// But heres my number
 

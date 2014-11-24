@@ -54,7 +54,7 @@ void NFC_ALIGN_SEND (uint16_t bpm, uint16_t temp,
 	aligned[2][4] = pwr;
 	aligned[2][5] = 0xFF;
 
-	l_addr += 0x0004;
+	/*l_addr += 0x0004;
 
 	aligned[3][0] = (uint8_t)(l_addr >> 8);
 	aligned[3][1] = (uint8_t)(l_addr);
@@ -62,7 +62,7 @@ void NFC_ALIGN_SEND (uint16_t bpm, uint16_t temp,
 	aligned[3][3] = 0xAD;
 	aligned[3][4] = 0xBE;
 	aligned[3][5] = 0xEF;
-
+*/
 	P2DIR |= (PULL_PIN); P2OUT |= (PULL_PIN);
 	P2DIR |= (PWR_PIN); P2OUT |= (PWR_PIN);
 
@@ -72,8 +72,8 @@ void NFC_ALIGN_SEND (uint16_t bpm, uint16_t temp,
 	_delay_cycles(16000);
 	I2C_TO_M24LRXX(aligned[2], PWR_PIN);
 	_delay_cycles(16000);
-	I2C_TO_M24LRXX(aligned[2], PWR_PIN);
-	_delay_cycles(16000);
+/*	I2C_TO_M24LRXX(aligned[3], PWR_PIN);
+	_delay_cycles(16000);*/
 
 	P2OUT &= ~(PWR_PIN);  P2DIR &= ~(PWR_PIN);
 	P2OUT &= ~(PULL_PIN); P2DIR &= ~(PULL_PIN);

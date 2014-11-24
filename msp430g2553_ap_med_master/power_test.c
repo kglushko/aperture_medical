@@ -21,7 +21,7 @@ uint8_t test_power(uint16_t TEST_PIN, uint16_t INCH) {
 
 	_delay_cycles(5);
 
-	power = (adc_val	<=	324	?	0			// Accounts for reserve energy to check level
+	power = (adc_val	<=	324	?	0	:		// Accounts for reserve energy to check level
 			(adc_val	<=	331	?	1	:
 			(adc_val	<=	338	?	2	:
 			(adc_val	<=	345	?	3	:

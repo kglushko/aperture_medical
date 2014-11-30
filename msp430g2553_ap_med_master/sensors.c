@@ -8,13 +8,11 @@
 #include "main.h"
 #include "sensors.h"
 
-volatile uint16_t sen1, sen2, time1 = 0, time2 = 0, l_delay, pulse1[9], pulse2[9], ADC_RESULT[3];
+volatile uint16_t sen1, sen2, time1 = 0, time2 = 0, l_delay, pulse1[10], pulse2[10], ADC_RESULT[3];
 
 volatile uint8_t i = 0, j = 0, beatfg = 0, tranfg = 0;
 
 void ADCChannelSelect_GEN(uint16_t BIT, uint16_t INCH) {
-
-	while (ADC10CTL1 & ADC10BUSY);						// Wait for my demise
 
 	ADC10AE0 = 0;
 	ADC10CTL0 = 0;
@@ -97,21 +95,30 @@ heart_data measHRTR(uint16_t delay, uint16_t BIT_F, uint16_t BIT_K, uint16_t INC
 
 	_BIS_SR(GIE); 		// Enable global interrupt
 
-	while((i < 10 || j < 10) && l_delay > 0) {}	// ADC DELAY Controls Conversion time
+	while((i != 10 || j != 10) && l_delay > 0) {}	// ADC DELAY Controls Conversion time
 
-	for(i = 1; i < 10; i++)
+	for(i = 2; i < 10; i++)
 	{
 		BPM_TICKS += pulse1[i];
-		TRN_TICKS += pulse2[i];
+		TRN_TICKS += abs(pulse2[i] - pulse1[i]);
 	}
 											// End of HR ADC
 	P2OUT &= ~(FOOT_PWR_PIN);
 	P2OUT &= ~(KNEE_PWR_PIN);
 
-	i = 0; j = 0;
-
 	metrics.bpm 	= (uint16_t)(BPM_TICKS >> 3);
 	metrics.transit = (uint16_t)(TRN_TICKS >> 3);
+
+	i = 0; j = 0;
+
+	ADC10CTL0 = 0;
+	ADC10CTL1 = 0;
+	ADC10AE0 = 0;
+
+	TACTL &= ~MC_2;             // turn off Timer A
+
+	BCSCTL1 = CALBC1_1MHZ;				// Set range   DCOCTL = CALDCO_1MHZ;
+	DCOCTL  = CALDCO_1MHZ;				// SMCLK = DCO = 1MHz
 
 	return metrics;
 }
@@ -155,7 +162,7 @@ __interrupt void ADC10_ISR (void) {
 	}
 
 	else if (sen2 > 900 && tranfg == 2 && j < 10) {
-		pulse2[j] = time2;
+		pulse2[j] = abs(time2 - time1);
 		time2 = 0;
 		j++;
 		tranfg = 0;

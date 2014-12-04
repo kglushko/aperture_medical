@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.westhealth.aperture.nfc.R;
+import com.westhealth.aperture.sync.R;
 
 /**
  * Created by Kirill on 10/9/2014.

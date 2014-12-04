@@ -1,0 +1,1 @@
+"./m24lr_xx_i2c.obj" "./main.obj" "./sensors.obj" "../lnk_msp430g2553.cmd" -l"libc.a" 

@@ -17,10 +17,9 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-import com.westhealth.aperture.nfc.R;
+import com.westhealth.aperture.sync.R;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 
 /**
@@ -70,9 +69,19 @@ public class GraphView extends SurfaceView implements SurfaceHolder.Callback {
         thread = new GraphThread(holder);
     }
 
+    public void reDraw() {
+        thread = new GraphThread(getHolder());
+        thread.setRunning(true);
+        if(!mPaused) {
+            thread.start();
+        } else {
+            thread.run();
+        }
+    }
+
     public class GraphThread extends Thread {
         private boolean mRun =  false;
-        private SurfaceHolder mSurfaceHolder;
+        private final SurfaceHolder mSurfaceHolder;
 
         private Canvas c;
 
@@ -285,9 +294,7 @@ public class GraphView extends SurfaceView implements SurfaceHolder.Callback {
             canvas.drawBitmap(mFullImage, 0, 0, null);
         }
 
-        public void setRunning(boolean b) {
-            mRun = b;
-        }
+        public void setRunning(boolean b) { mRun = b; }
 
     }
 
@@ -317,6 +324,7 @@ public class GraphView extends SurfaceView implements SurfaceHolder.Callback {
                 thread.join();
                 retry = false;
             } catch (Exception e) {
+
             }
         }
     }

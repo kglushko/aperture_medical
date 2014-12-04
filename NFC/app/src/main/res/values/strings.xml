@@ -9,6 +9,7 @@
     <string name="end_date">END DATE/TIME</string>
     <string name="confirm">CONFIRM</string>
     <string name="cancel">CANCEL</string>
+    <string name="ok">OK</string>
     <string name="title_activity_stat">StatActivity</string>
     <string name="title_activity_blood_pressure">BloodPressureActivity</string>
     <string name="title_activity_hydration">HydrationActivity</string>

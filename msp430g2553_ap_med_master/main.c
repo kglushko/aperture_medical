@@ -26,13 +26,15 @@ int main(void)
 	  g_delay = 2700000;			// 15 minutes
   }
 
-  g_delay = 15000;		// 5 seconds
+  g_delay = 27000;		// 5 seconds
+
 
   WDTCTL = WDT_MDLY_32;						// I just met you
 
   IE1 |= WDTIE;								// Enable WatchDog Interrupt
 
   __bis_SR_register(LPM1_bits + GIE);        // Enter LPM1 w/ interrupt
+
 
 	while(1)
 	{
@@ -88,7 +90,7 @@ int main(void)
 			}
 
 
-			g_delay = 15000;
+			g_delay = 27000;		// 5 seconds
 
 			WDTCTL = WDT_MDLY_32;						// But heres my number
 
@@ -97,6 +99,7 @@ int main(void)
 			__bis_SR_register(LPM1_bits + GIE);        // Enter LPM1 w/ interrupts
 		}
 	}
+
 }
 
 // WDT interrupt service routine

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.westhealth.aperture.nfc" >
+    package="com.westhealth.aperture.sync" >
 
     <uses-permission android:name="android.permission.NFC" />
 
@@ -12,9 +12,10 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme"
+        android:name="com.westhealth.aperture.STMlibs.DataDevice">
         <activity
-            android:name=".SyncActivity"
+            android:name="com.westhealth.aperture.sync.SyncActivity"
             android:alwaysRetainTaskState="true"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
@@ -23,42 +24,34 @@
             android:theme="@style/FullscreenTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <intent-filter>
-                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
-
+                <action android:name="android.nfc.action.TECH_DISCOVERED" />
                 <category android:name="android.intent.category.DEFAULT" />
 
-                <data android:mimeType="text/plain" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.nfc.action.TAG_DISCOVERED" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.nfc.action.TECH_DISCOVERED" />
             </intent-filter>
             <meta-data
                 android:name="android.nfc.action.TECH_DISCOVERED"
                 android:resource="@xml/nfc_tech_filter" />
         </activity>
         <activity
-            android:name=".StatActivity"
+            android:name="com.westhealth.aperture.sync.StatActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="nosensor"
             android:label="@string/title_activity_stat"
-            android:parentActivityName=".SyncActivity"
+            android:parentActivityName="com.westhealth.aperture.sync.SyncActivity"
             android:theme="@style/FullscreenTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.westhealth.aperture.nfc.OverviewActivity" />
         </activity>
         <activity
-            android:name=".OverviewActivity"
+            android:name="com.westhealth.aperture.sync.OverviewActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="nosensor"
             android:label="@string/title_activity_overview"
-            android:parentActivityName=".SyncActivity"
+            android:parentActivityName="com.westhealth.aperture.sync.SyncActivity"
             android:theme="@style/FullscreenTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

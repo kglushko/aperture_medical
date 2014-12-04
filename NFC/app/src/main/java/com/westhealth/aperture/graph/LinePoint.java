@@ -72,7 +72,7 @@ public class LinePoint {
 
     public int getSelectedColor() {
         if (-1 == mSelectedColor) {
-            mSelectedColor = Utils.darkenColor(mColor);
+            mSelectedColor = GraphUtils.darkenColor(mColor);
             mSelectedColor &= 0x80FFFFFF;
         }
         return mSelectedColor;

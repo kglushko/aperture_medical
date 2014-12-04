@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#1997a9"
-    tools:context="com.westhealth.aperture.nfc.OverviewActivity">
+    tools:context="com.westhealth.aperture.sync.OverviewActivity">
 
     <!-- The primary full-screen view. This can be replaced with whatever view
          is needed to present your content, e.g. VideoView, SurfaceView,
@@ -57,11 +57,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#004e58"
-            android:id="@+id/bp_button"
+            android:id="@+id/tran_button"
             style="@android:style/Holo.ButtonBar"
             android:layout_row="3"
             android:layout_column="0"
-            android:text="120/60"
+            android:text="90 MS"
             android:gravity="bottom|center"
             android:paddingBottom="20dp"
             android:textSize="22dp"

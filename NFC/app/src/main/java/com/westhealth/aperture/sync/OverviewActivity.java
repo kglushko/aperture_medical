@@ -271,7 +271,7 @@ public class OverviewActivity extends Activity {
         } else if(type.contains("BP")) {
             return df.format(data) + " MS";
         } else if(type.contains("Hydro")) {
-            return df.format(data) + " PF";
+            return df.format(data) + " %";
         } else {
             return "ERROR";
         }

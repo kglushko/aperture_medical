@@ -1,6 +1,7 @@
 package com.westhealth.aperture.nfc;
 
 import com.westhealth.aperture.nfc.util.SystemUiHider;
+import com.westhealth.aperture.sync.R;
 
 import android.annotation.TargetApi;
 import android.app.Activity;

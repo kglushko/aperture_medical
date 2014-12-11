@@ -100,7 +100,7 @@ public class DetailedDialog extends DialogFragment {
                     + gaugePTT(ddata)
                     + setDataTime(time.get(index));
         } else if(type.contains("Hydro")) {
-            return df.format(ddata) + "PF\n"
+            return df.format(ddata) + "%\n"
                     + gaugeHYD(ddata)
                     + setDataTime(time.get(index));
         } else if(type.contains("Batt")) {
@@ -120,18 +120,18 @@ public class DetailedDialog extends DialogFragment {
     }
 
     private String gaugePTT(Double data){
-        return  (data < 60   ? "\nVERY HIGH PRESSURE" :
+        return  (data < 20   ? "\nVERY HIGH PRESSURE" :
                 (data < 80   ? "\nHIGH PRESSURE"      :
-                (data < 100  ? "\nNORMAL PRESSURE"    :
-                (data < 120  ? "\nLOW PRESSURE"       :    "\nVERY LOW PRESSURE"
+                (data < 140  ? "\nNORMAL PRESSURE"    :
+                (data < 200  ? "\nLOW PRESSURE"       :    "\nVERY LOW PRESSURE"
                 ))));
     }
 
     private String gaugeBPM(Double data) {
         return  (data < 20  ? "\nVERY LOW" :
                 (data < 40  ? "\nLOW"      :
-                (data < 60  ? "\nNORMAL"   :
-                (data < 80  ? "\nHIGH"     :    "\nVERY HIGH"
+                (data < 60  ? "\nNORMAL / LOW"   :
+                (data < 80  ? "\nNORMAL"     :    "\nHIGH"
                 ))));
     }
 

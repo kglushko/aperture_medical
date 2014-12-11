@@ -253,7 +253,7 @@ public class StatActivity extends FragmentActivity implements DateTimePicker.OnC
                 mDetail.setmData(dataToShow);
                 mDetail.setmTime(timeToShow);
                 mDetail.setmType(type);
-                mDetail.setmIndex(pointIndex);
+                mDetail.setmIndex(pointIndex + 1);
                 mDetail.show(getSupportFragmentManager(), "AM_SYNC");
             }
         });

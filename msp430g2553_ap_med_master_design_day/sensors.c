@@ -106,6 +106,8 @@ heart_data measHRTR(uint16_t delay, uint16_t BIT_F, uint16_t BIT_K, uint16_t INC
 	P2OUT &= ~(FOOT_PWR_PIN);
 	P2OUT &= ~(KNEE_PWR_PIN);
 
+	_DINT();
+
 	metrics.bpm 	= (uint16_t)(BPM_TICKS >> 3);
 	metrics.transit = (uint16_t)(TRN_TICKS >> 3);
 

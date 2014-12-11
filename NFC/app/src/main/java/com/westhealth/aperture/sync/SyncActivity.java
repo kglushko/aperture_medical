@@ -196,7 +196,7 @@ public class SyncActivity extends Activity {
                 }
             });
         } else {
-            if (!mNfcAdapter.isEnabled()) {
+/*            if (!mNfcAdapter.isEnabled()) {
                 isNFCon = false;
                 // Tell the user we're in bad shape
                 mMainButton.setVisibility(View.VISIBLE);
@@ -206,7 +206,7 @@ public class SyncActivity extends Activity {
                         startActivity(new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS));
                     }
                 });
-            } else {
+            } else {*/
                 isNFCon = true;
                 mMainButton.setText("CONTINUE W/O SYNC");
                 mMainButton.setOnClickListener(new View.OnClickListener() {
@@ -221,7 +221,7 @@ public class SyncActivity extends Activity {
                     }
                 });
                 discoverTag(getIntent());
-            }
+            //}
         }
     }
 

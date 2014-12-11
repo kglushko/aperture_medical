@@ -2,6 +2,8 @@ package com.westhealth.aperture.nfc;
 
 import com.westhealth.aperture.nfc.util.SystemUiHider;
 
+import com.westhealth.aperture.sync.R;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -172,7 +174,7 @@ public class OverviewActivity extends Activity {
         });
         //------------------------------------------------------------------------------------------
         // Blood Pressure Button -------------------------------------------------------------------
-        mBpButton = (Button) findViewById(R.id.bp_button);
+        mBpButton = (Button) findViewById(R.id.tran_button);
         mBpView = (ImageView) findViewById(R.id.imageView_bp);
         mBpButton.setTextColor(Color.parseColor("#004e58"));
         mBpView.setImageResource(R.drawable.bp_light);

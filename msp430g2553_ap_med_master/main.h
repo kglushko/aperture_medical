@@ -18,6 +18,8 @@
 #include "power_test.h"
 #include "m24lr_xx_i2c.h"
 
+#define 15_MIN_IN_TICKS     900000000
+#define 30_SEC_IN_TICKS		30000000
 #define HEART_ON_TIME		15000
 #define TEMP_ON_TME			8
 

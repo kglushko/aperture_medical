@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.westhealth.aperture.graph.GraphView;
 import com.westhealth.aperture.graph.Line;
 import com.westhealth.aperture.graph.LinePoint;
+import com.westhealth.aperture.sync.R;
 
 import java.util.Random;
 
@@ -95,7 +96,7 @@ public class StatActivity extends FragmentActivity implements DateTimePicker.OnC
             }
         });
 
-        viewTest();
+        //viewTest();
 
     }
 
@@ -160,7 +161,7 @@ public class StatActivity extends FragmentActivity implements DateTimePicker.OnC
     }
 
 
-    public void viewTest() {
+/*    public void viewTest() {
         final Resources resources = getResources();
         Line l = new Line();
         l.setUsingDips(false);
@@ -194,5 +195,5 @@ public class StatActivity extends FragmentActivity implements DateTimePicker.OnC
             }
         });
 
-    }
+    }*/
 }

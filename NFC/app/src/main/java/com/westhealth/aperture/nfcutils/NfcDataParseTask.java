@@ -48,7 +48,8 @@ public class NfcDataParseTask {
             }
         }
 
-        return 60/((data[data.length - 1]) / 1000);
+        Double bpm = 60/((data[data.length - 1]) / 1000);
+        return (bpm > 300 ? 0 : bpm);
 
     }
 
@@ -69,17 +70,23 @@ public class NfcDataParseTask {
 
         /* Remember to add formulas */
 
-        return data[data.length - 1];
+        Double d = data[data.length - 1];
+
+        return (
+            (d > 1384   ?   100             :
+            (d > 900	?	d/96.8 + 85.7   :
+            (d > 658	?	d/48.4 + 76.4   :
+            (d > 581	?	d/15.4 + 47.3   :
+            (d > 503	?	d/3.9 - 64.0    :
+            (d > 455	?	d/2.4 - 144.6   :
+            (d > 319	?	d/6.8 - 21.9    :
+            (d > 0	    ?	d/12.76         : 0)
+            )))))))
+        );
     }
 
     public Double parseCurrentTemperature() {
         Double[] data = merge(temperature, 4);
-
-/*        for(int i = 1; i < data.length; i++) {
-            if(data[i] <= 50 || data[i] >= 200 ) {
-                data[i] = data[i - 1];
-            }
-        }*/
 
         return (0.0505 * data[data.length - 1]) + 64.7;
     }
@@ -96,7 +103,9 @@ public class NfcDataParseTask {
         }
 
         for(Double d : data){
-            parsedData.add(60/(d/1000));
+            Double bpm = 60/ (d / 1000);
+
+            parsedData.add((bpm > 300 ? 0 : bpm));
         }
 
         return parsedData;
@@ -126,9 +135,18 @@ public class NfcDataParseTask {
         Double[] data = merge(hydration, 4);
 
         for(Double d : data){
-            parsedData.add((d - 416) * (31/3));
+           parsedData.add(
+                (d > 1384   ?   100             :
+                (d > 900	?	d/96.8 + 85.7   :
+                (d > 658	?	d/48.4 + 76.4   :
+                (d > 581	?	d/15.4 + 47.3   :
+                (d > 503	?	d/3.9 - 64.0    :
+                (d > 455	?	d/2.4 - 144.6   :
+                (d > 319	?	d/6.8 - 21.9    :
+                (d > 0	    ?	d/12.76         : 0)
+                )))))))
+           );
         }
-
         return parsedData;
     }
 
@@ -136,12 +154,6 @@ public class NfcDataParseTask {
         ArrayList<Double> parsedData = new ArrayList<Double>();
 
         Double[] data = merge(temperature, 4);
-
-/*        for(int i = 1; i < data.length; i++) {
-            if(data[i] <= 200 || data[i] >= 1200 ) {
-                data[i] = data[i - 1];
-            }
-        }*/
 
 
         for(Double d : data){
@@ -261,10 +273,6 @@ public class NfcDataParseTask {
         * TIME   | DAY   | BATT           | 0xFF
         *
         */
-
-        int fileNum = 0;
-
-        ArrayList<Character> daystamp_temp = new ArrayList<Character>();
 
         for(char[] c : fileData) {
             for(i = 0; i < c.length; i += 24) {

@@ -17,6 +17,7 @@ import android.widget.TimePicker;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import com.westhealth.aperture.sync.R;
 
 /**
  * Created by Kirill on 10/5/2014.

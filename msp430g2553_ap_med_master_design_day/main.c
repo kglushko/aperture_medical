@@ -47,7 +47,10 @@ int main(void)
 	{
 	  if(--g_delay==0)						    // Everything happens in here, woken from watchdog
 		{
-			WDTCTL = WDTPW + WDTHOLD;               // Stop WDT
+		  	P1DIR |= BIT4;
+		  	P1OUT |= BIT4;
+
+		  	WDTCTL = WDTPW + WDTHOLD;               // Stop WDT
 
 			IE1 &= ~WDTIE;							// Disable WatchDog Interrupt
 
@@ -64,6 +67,9 @@ int main(void)
 
 			g_heart_data = measHRTR(HEART_ON_TIME, HR_FOOT_SENSE, HR_LEG_SENSE,HR_ADC_INCH, HR_FOOT_PWR, HR_KNEE_PWR);
 
+			uint16_t bpm = g_heart_data.bpm;
+			uint16_t ptt = g_heart_data.transit;
+
 			_delay_cycles(50);
 
 			g_temp = measTEMP(TEMP_ON_TME, TEMP_SENSE, TEMP_ADC_INCH, TEMP_PWR);
@@ -75,9 +81,9 @@ int main(void)
 			_delay_cycles(50);
 
 
-			NFC_ALIGN_SEND	(	g_heart_data.bpm,			// Measured Beats Per Minute
+			NFC_ALIGN_SEND	(	bpm,						// Measured Beats Per Minute
 								g_temp,						// Measured Temp
-								g_heart_data.transit,		// Measured Transit Time
+								ptt,						// Measured Transit Time
 								g_hyd,						// Measure Hydration
 								g_timestamp,				// Accumulated Timestamp
 								g_daystamp,					// Accumulated Daystamp
@@ -106,7 +112,10 @@ int main(void)
 
 			__bis_SR_register(LPM1_bits + GIE);        // Enter LPM1 w/ interrupts*/
 
-			 break;
+		  	P1DIR &= ~BIT4;
+		  	P1OUT &= ~BIT4;
+
+		  	break;
 		}
 	}
 

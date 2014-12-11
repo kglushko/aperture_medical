@@ -23,10 +23,10 @@ int main(void)
   g_power = test_power(PWR_SENSE, PWR_ADC_INCH);
 
   if(g_power == 0) {
-	  g_delay = 2700000;			// 15 minutes
+	  g_delay = 15_MIN_IN_TICKS;			// 15 minutes
   }
 
-  g_delay = 27000;		// 5 seconds
+  g_delay = 30_SEC_IN_TICKS;
 
 
   WDTCTL = WDT_MDLY_32;						// I just met you
@@ -47,7 +47,7 @@ int main(void)
 			g_power = test_power(PWR_SENSE, PWR_ADC_INCH);
 
 			if(g_power == 0) {
-				g_delay = 2700000;			// 15 minutes
+				g_delay = 15_MIN_IN_TICKS;			// 15 minutes
 				WDTCTL = WDT_MDLY_32;						// But heres my number
 				IE1 |= WDTIE;								// Enable WatchDog Interrupt
 				__bis_SR_register(LPM1_bits + GIE);        // Enter LPM1 w/ interrupts
@@ -90,7 +90,7 @@ int main(void)
 			}
 
 
-			g_delay = 27000;		// 5 seconds
+			g_delay = 30_SEC_IN_TICKS;
 
 			WDTCTL = WDT_MDLY_32;						// But heres my number
 

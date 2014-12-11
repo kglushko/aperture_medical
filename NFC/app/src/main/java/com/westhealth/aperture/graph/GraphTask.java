@@ -74,7 +74,7 @@ public class GraphTask extends Application {
                 p = new LinePoint();
                 p.setX(i);
 
-                p.setY(data.get(i));
+                p.setY(data.get(i).floatValue());
 
                 p.setColor(res.getColor(R.color.baseCeleste));
                 l.addPoint(p);
@@ -89,8 +89,8 @@ public class GraphTask extends Application {
         graphView.addLine(l);
 
         if (type.contains("Data")) {
-            graphView.setRangeY(data.get(data.indexOf(Collections.min(data))).floatValue() - 25,
-                    data.get(data.indexOf(Collections.max(data))).floatValue() + 25);
+            graphView.setRangeY(data.get(data.indexOf(Collections.min(data))).floatValue() - 10,
+                    data.get(data.indexOf(Collections.max(data))).floatValue() + 10);
         } else if (type.contains("Batt")) {
             graphView.setRangeY(-10,110);
         }
